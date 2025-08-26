@@ -1,0 +1,355 @@
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+DOCUMENT NOTES:
+ - All of the buttons to the in-website pages will have to be rewired once implemented
+ - The image will have to be replaced with the location of the image file on the website
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Outfit&family=Roboto:ital,wght@0,100..900;1,100..900&family=Special+Gothic+Condensed+One&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Outfit&family=Roboto:ital,wght@0,100..900;1,100..900&family=Special+Gothic+Condensed+One&display=swap');
+            
+            * {
+                margin: 0px;
+                padding: 0px;
+                height: 100%;
+            }
+            body {
+                background-image: url("src/bg.jpg");
+                background-size: cover;
+                background-repeat: repeat-x;
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                animation: bg-move 50s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+                background-color: black;
+            }
+            #menu {
+                width: 25%;
+                height: 100%;
+                background-color: hsl(0, 0%, 0%);
+                opacity: 0.85;
+                animation: menu-in 1s ease-in-out;
+                display: flex;
+                flex-direction: column;
+            }
+            #fade {
+                width: 100%;
+                min-height: 5%;
+                max-height: 5%;
+                background-image: linear-gradient(to top, hsla(0, 0%, 0%, 0.5) 0%, hsla(0, 0%, 0%, 0) 100%);
+                opacity: 0.85;
+            }
+            #lower {
+                width: 98%;
+                min-height: 300vh;
+                background-color: hsl(0, 0%, 0%);
+                padding: 1%;
+                padding-top: 4%;
+            }
+            #title {
+                width: 100%;
+                height: min-content;
+                font-family: "Special Gothic Condensed One", sans-serif;
+                font-size: 20vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: right;
+
+                animation: title-in 1s ease-in-out;
+                padding-top: 1%;
+                opacity: 0.8;
+            }
+
+            .titleLabel {
+                height: min-content;
+
+                color: black;
+                opacity: 1;
+
+                transition: 0.2s ease-in-out;
+                cursor: default;
+                user-select: none;
+            }
+
+            .titleLabel:hover {
+                opacity: 0.75;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            .header {
+                color: white;
+                font-family: "Special Gothic Condensed One", sans-serif;
+                padding: 8px;
+                padding-left: 20px;
+                font-size: calc(1.5 * (1vw + 1vh));
+                cursor: default;
+                max-height: min-content;
+            }
+
+            .menuItem {
+                color: white;
+                font-family: "Kantumruy Pro", sans-serif;
+                font-weight: 300;
+                padding: 1.6%;
+                padding-left: 20px;
+                font-size: calc(0.7 * (1vw + 1vh));
+                transition: 0.2s;
+                animation: menu-in 1s ease-out;
+                max-height: min-content;
+            }
+
+            .menuItem:hover {
+                opacity: 0.8;
+            }
+
+            .menuItem:not([href]) {
+                opacity: 0.6;
+                pointer-events: none;
+                cursor: default;
+            }
+
+            .menuText {
+                color: white;
+                font-family: "Kantumruy Pro", sans-serif;
+                font-weight: 300;
+                padding: 1.8%;
+                padding-left: 20px;
+                font-size: calc(0.65 * (1vw + 1vh));
+                max-height: min-content;
+            }
+
+            .introText {
+                color: white;
+                background-color: black;
+                border-radius: 1.5vh;
+                opacity: 0.8;
+                font-family: "Kantumruy Pro", sans-serif;
+                font-weight: 400;
+                text-align: center;
+                padding-left: 10%;
+                padding-right: 10%;
+                max-height: min-content;
+                margin: 5vh;
+                margin-left: 10%;
+                margin-right: 10%;
+                padding: 2.5vh;
+                font-size: calc(0.8 * (1vw + 1vh));
+                max-height: min-content;
+            }
+
+            .mulch {
+                background-color: black;
+                border: solid white 3px;
+                padding: 10px;
+                border-radius: 20px;
+                width: 80%;
+                max-height: min-content;
+                display: flex;
+                flex-direction: column;
+                align-self: center;
+                animation: menu-in 1s ease-out;
+                cursor: pointer;
+                color: white;
+                transition: 0.3s ease-in-out;
+            }
+
+            .mulch:hover {
+                background-color: white;
+                color: black;
+            }
+
+            #mulchHeader {
+                font-family: "Special Gothic Condensed One", sans-serif;
+                text-align: center;
+                font-size: 32px;
+                max-height: min-content;
+                padding-bottom: 5px;
+            }
+
+            #mulchDesc {
+                font-family: "Kantumruy Pro", sans-serif;
+                text-align: center;
+                font-size: 15px;
+                line-height: 20px;
+            }
+
+            #fit {
+                width: min-content;
+            }
+
+            .line {
+                height: 5px;
+                width: 100%;
+                background-color: black;
+            }
+
+            #boxes {
+                max-width: 100%;
+                height: min-content;
+                padding-left: 10%;
+                padding-right: 10%;
+                display: flex;
+                flex-direction: row;
+                justify-content:space-between;
+                opacity: 0.8;
+            }
+
+            .box {
+                width: 34vh;
+                height: 34vh;
+                border-radius: 5%;
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                background-color: black;
+                color: white;
+                padding: 3vh;
+            }
+
+            @keyframes title-in {
+                from {
+                    opacity: 0;
+                    padding-top: 0%;
+                    padding-bottom: 1%;
+                }
+                to {
+                    opacity: 0.8;
+                    padding-top: 1%;
+                    padding-bottom: 0%;
+                }
+            }
+
+            @keyframes menu-in {
+                0% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 0.8;
+                }
+            }
+
+            @keyframes bg-move {
+                0% {
+                    background-position: 0% 0%;
+                }
+                50% {
+                    background-position: 100% 0%;
+                }
+                100% {
+                    background-position: 0% 0%;
+                }
+            }
+
+            @keyframes item-in {
+                0% {
+                    padding-left: 0px;
+                }
+                50% {
+                    padding-left: 0px;
+                }
+                100% {
+                    padding-left: 20px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <a class="menuItem" href="home.html" style="color: black; max-height: min-content; padding-bottom: 0px; font-weight: 600;">&lt; Back</a>
+        <div id="title">Why 349?</div>
+        <p class="introText" style="animation: menu-in 1s ease-in-out;">When you make the decision to join a troop you need to know how it works and how it accomplishes the goals set forth by the BSA. Below are some reasons why we believe you should choose our troop:
+</p>
+        <div id="boxes" style="animation: menu-in 1s ease-in-out;">
+            <div class="box">
+                <a class="header">High Quality</a>
+                <p class="menuText">Our troop is known for our trained leaders, our balance of scouting ranks, and our extensive planning. We plan all events, including campouts and fundraisers, up to 18 months in advance, and our merit badge meetings cycle every 2 years. Since 2010, 60 Eagle Scouts have graduated from our troop.</p>
+            </div>
+            <div class="box">
+                <a class="header">Activities</a>
+                <p class="menuText">We plan for and go on 10 camping trips, regularly participate in community service events , merit badge events, and day trips every year. We also attend area overnight scout camps and high adventure camps, as well as weekly Tuesday Meetings at the American Legion.</p>
+            </div>
+            <div class="box">
+                <a class="header">Scout Run</a>
+                <p class="menuText">We believe in the concept of “boy led” with the addition of the phrase “parent mentored” to teach leadership to boys in a safe and encouraging environment. Part of our mission is to give every boy a safe environment to learn and practice the principles of leadership.</p>
+            </div>
+        </div>
+        <div id="fade"></div>
+        <div id="lower">
+            <a class="header" style="font-size: calc(2.5 * (1vw + 1vh));">An Active Troop</a>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh));">Troop 349 plans multiple camping, service, and merit badge events for each year. Here's what a year of being in our troop might look like:</p>
+            
+            <p class="header" style="font-size: calc(1.5 * (1vw + 1vh));">January</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - Historical Themed Campout To Gettysburg</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - Basic Knot Challenge</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - Decorate A Vet Service Project</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh));"> - Family Life Merit Badge</p>
+
+            <p class="header" style="font-size: calc(1.5 * (1vw + 1vh));">February</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - Winter Sports Themed Ski Trip To Timberline</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - Snow Sports Merit Badge</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh));"> - Ice Skating</p>
+
+            <p class="header" style="font-size: calc(1.5 * (1vw + 1vh));">March</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - Orienteering Themed Campout To Prince William Park</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - Compass Skills</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - Camping Merit Badge</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - Orienteering Merit Badge</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh));"> - Spring Fundraiser</p>
+
+            <p class="header" style="font-size: calc(1.5 * (1vw + 1vh));">April</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - New Scout Themed Camping Trip To Burke Lake</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - Water Filter Skills</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh));"> - Troop Elections</p>
+
+            <p class="header" style="font-size: calc(1.5 * (1vw + 1vh));">May</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - Canoe Trip Camping In Shenandoah</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - Cooking Skills</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - Memorial Day Service Event</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh));"> - Citizenship In The Community Merit Badge</p>
+
+            <p class="header" style="font-size: calc(1.5 * (1vw + 1vh));">June</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - Sandy Springs Adventure Campout</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - Fishing and Climbing Knots Skills</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - Troop Party</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh));"> - Swim Tests</p>
+
+            <p class="header" style="font-size: calc(1.5 * (1vw + 1vh));">July</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - Summer Camp (One Week)</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh));"> - High Adventure</p>
+
+            <p class="header" style="font-size: calc(1.5 * (1vw + 1vh));">September</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - Backpacking Campout Trip In White Oak Canyon</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - Stove Skills</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - War Veterans Honor Flight Service Project</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh));"> - Citizenship In The Nation Merit Badge</p>
+
+            <p class="header" style="font-size: calc(1.5 * (1vw + 1vh));">October</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - District Camporee Campout</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - Lashings and Backpacking Skill Training</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - Troop Elections</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh));"> - Game Design Merit Badge</p>
+
+            <p class="header" style="font-size: calc(1.5 * (1vw + 1vh));">November</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - Wilderness Survival Campout In Catoctin</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - Fire Building Training</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - Scouting For Food Service Project</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh));"> - Wilderness Survival Merit Badge</p>
+            
+            <p class="header" style="font-size: calc(1.5 * (1vw + 1vh));">December</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - Service To Others Themed Campout In Cowans Gap</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - Dutch Oven Cooking Training</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - Arlington Cemetery Service Project</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - Public Speaking Merit Badge</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh)); padding-bottom: 0px;"> - Winter Fundraiser</p>
+            <p class="menuText" style="font-size: calc(1 * (1vw + 1vh));"> - Webelos Open House</p>
+        </div>
+    </body>
+</html>

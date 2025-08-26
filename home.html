@@ -1,0 +1,248 @@
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+DOCUMENT NOTES:
+ - All of the buttons to the in-website pages will have to be rewired once implemented
+ - The image will have to be replaced with the location of the image file on the website
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Outfit&family=Roboto:ital,wght@0,100..900;1,100..900&family=Special+Gothic+Condensed+One&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Outfit&family=Roboto:ital,wght@0,100..900;1,100..900&family=Special+Gothic+Condensed+One&display=swap');
+            * {
+                margin: 0px;
+                padding: 0px;
+                height: 100%;
+                overflow: hidden;
+            }
+            body {
+                background-image: url("src/bg.jpg");
+                background-size: cover;
+                background-repeat: repeat-x;
+                display: flex;
+                flex-direction: row;
+                height: 100%;
+                animation: bg-move 50s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+            }
+            #menu {
+                width: 25%;
+                height: 100%;
+                background-color: hsl(0, 0%, 0%);
+                opacity: 0.85;
+                animation: menu-in 1s ease-in-out;
+                display: flex;
+                flex-direction: column;
+            }
+            #fade {
+                width: 5%;
+                height: 100%;
+                background-image: linear-gradient(to right, hsla(0, 0%, 0%, 0.5) 0%, hsla(0, 0%, 0%, 0) 100%);
+                opacity: 0.85;
+                animation: menu-in 1s ease-in-out;
+            }
+            #title {
+                width: 65%;
+                height: 100%;
+                font-family: "Special Gothic Condensed One", sans-serif;
+                font-size: 25vh;
+                display: flex;
+                flex-direction: column;
+                align-items: end;
+                text-align: right;
+
+                animation: title-in 1s ease-in-out;
+                padding-right: 5%;
+                opacity: 0.8;
+            }
+
+            .titleLabel {
+                height: min-content;
+                width: min-content;
+
+                color: black;
+                opacity: 1;
+
+                transition: 0.2s ease-in-out;
+                cursor: default;
+                user-select: none;
+            }
+
+            .titleLabel:hover {
+                opacity: 0.75;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            .header {
+                color: white;
+                font-family: "Special Gothic Condensed One", sans-serif;
+                padding: 8px;
+                padding-left: 20px;
+                font-size: calc(2 * (1vw + 1vh));
+                animation: item-in 1s ease-out;
+                cursor: default;
+                max-height: min-content;
+            }
+
+            .menuItem {
+                color: white;
+                font-family: "Kantumruy Pro", sans-serif;
+                font-weight: 300;
+                padding: 1.6%;
+                padding-left: 20px;
+                font-size: calc(0.7 * (1vw + 1vh));
+                transition: 0.2s;
+                animation: item-in 1s ease-out;
+                max-height: min-content;
+            }
+
+            .menuItem:hover {
+                opacity: 0.8;
+            }
+
+            .menuItem:not([href]) {
+                opacity: 0.6;
+                pointer-events: none;
+                cursor: default;
+            }
+
+            .mulch {
+                background-color: black;
+                border: solid white 3px;
+                padding: 10px;
+                border-radius: 20px;
+                width: 80%;
+                max-height: min-content;
+                max-height: 10%;
+                min-height: min-content;
+                display: flex;
+                flex-direction: column;
+                align-self: center;
+                animation: menu-in 1s ease-out;
+                cursor: pointer;
+                color: white;
+                transition: 0.3s ease-in-out;
+            }
+
+            .mulch:hover {
+                background-color: white;
+                color: black;
+            }
+
+            #mulchHeader {
+                font-family: "Special Gothic Condensed One", sans-serif;
+                text-align: center;
+                font-size: 32px;
+                max-height: min-content;
+                padding-bottom: 5px;
+            }
+
+            #mulchDesc {
+                font-family: "Kantumruy Pro", sans-serif;
+                text-align: center;
+                font-size: 15px;
+                line-height: 20px;
+            }
+
+            #fit {
+                width: min-content;
+            }
+
+            .line {
+                height: 5px;
+                width: 100%;
+                background-color: black;
+            }
+
+            @keyframes title-in {
+                from {
+                    opacity: 0;
+                    padding-right: 0%;
+                    padding-left: 5%;
+                }
+                to {
+                    opacity: 0.8;
+                    padding-right: 5%;
+                    padding-left: 0%;
+                }
+            }
+
+            @keyframes menu-in {
+                0% {
+                    opacity: 0;
+                }
+                50% {
+                    opacity: 0;
+                }
+                100% {
+                    opacity: 0.85;
+                }
+            }
+
+            @keyframes bg-move {
+                0% {
+                    background-position: 0% 0%;
+                }
+                50% {
+                    background-position: 100% 0%;
+                }
+                100% {
+                    background-position: 0% 0%;
+                }
+            }
+
+            @keyframes item-in {
+                0% {
+                    padding-left: 0px;
+                }
+                50% {
+                    padding-left: 0px;
+                }
+                100% {
+                    padding-left: 20px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div id="menu">
+            <p style="min-height: 10px; max-height: 10px;"></p>
+
+            <a class="header" style="display: flex; flex-direction: row; gap: 10%; align-items: center;">Troop 349 <img style="max-height: 100px;" src="src/bsa.svg"></a>
+            <a href="about-us.html" class="menuItem">Why 349?</a>
+            <a class="menuItem">Summer Camps</a>
+            <a class="menuItem">High Adventure Trips</a>
+            <a href="https://my.scouting.org/VES/OnlineReg/1.0.0/?tu=UF-MB-082taa0349" target="_blank" class="menuItem">Join Scouting</a>
+            <a href="https://www.paypal.com/donate?hosted_button_id=HWJQ7Y6RJU5T8" target="_blank" class="menuItem">Donations</a>
+            <a href="https://troop349.us/sample-page/contact-us/" class="menuItem">Contact Us</a>
+
+            <a class="header">Scouts</a>
+            <a href="https://scoutbook.scouting.org/" target="_blank" class="menuItem">Scoutbook</a>
+            <a href="https://drive.google.com/drive/folders/1QSGjrxgvoeHI-Jt_aWtXSBSKs7nmU0dL?usp=drive_link" target="_blank" class="menuItem">Packing Lists</a>
+            <a class="menuItem">Upcoming Events</a>
+            <a href="resources.html" class="menuItem">Additional Resources</a>
+
+            <p style="min-height: 20px; max-height: 20px;"></p>
+
+            <a target="_blank" class="mulch" title="Sales are now closed.">
+                <p id="mulchHeader">Mulch Fundraiser</p>
+                <p id="mulchDesc" style="font-style: italic;">Check back in January for more information!</p>
+            </a>
+
+            <p style="min-height: 20px; max-height: 20px;"></p>
+        </div>
+        <div id="fade"></div>
+        <div id="title">
+            <div id="fit">
+                <p class="titleLabel">TROOP<br>349</p>
+                <div class="line"></div>
+                <p class="titleLabel" style="font-size: 70px; width: 100%;">Falls Church, VA</p>
+            </div>
+        </div>
+    </body>
+</html>
